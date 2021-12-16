@@ -6,14 +6,18 @@ jobs:
     steps:
       - test: echo "test"
   test2:
-    requires: [ ~commit ]
+    requires: [ test1 ]
     steps:
-      - test: exit 1
+      - test: echo "test"
   test3:
-    requires: [ ~commit ]
+    requires: [ test2 ]
+    steps:
+      - test: echo "test"
+  foo:
+    requires: [ test3 ]
     steps:
       - test: echo "test"
   test4:
-    requires: [ ~commit ]
+    requires: [ foo ]
     steps:
       - test: echo "test"
